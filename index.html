@@ -1,23 +1,562 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+   <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "모하비 리스 견적 비교",
+      "url": "https://www.yourdomain.com/mohave-lease-compare",
+      "description": "2026년형 기아 모하비 신차 리스, 장기렌트 최저가 비교 견적 서비스. 복합 견적 비교로 현명한 차량 구매를 위한 최적의 솔루션을 제공합니다.",
+      "mainEntity": {
+        "@type": "Service",
+        "name": "기아 모하비 리스/장기렌트 비교 견적 서비스",
+        "serviceType": "Vehicle Lease Comparison",
+        "provider": {
+          "@type": "Organization",
+          "name": "모하비 장기렌트 리스 전문가 그룹"
+        },
+        "areaServed": "대한민국",
+        "keywords": "모하비 리스, 모하비 장기렌트, 모하비 견적, 모하비 가격, 모하비 장단점, 모하비 리스 비용, 모하비 프로모션, 2026년 모하비"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "모하비 리스와 장기렌트의 차이점은 무엇인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "모하비 리스(Lease)는 금융 상품으로 분류되어 차량 번호판이 일반 번호판(하, 허, 호 제외)이며, 개인 보험 요율을 적용받습니다. 반면 모하비 장기렌트(Rental)는 차량 대여 상품으로 '하, 허, 호' 번호판을 사용하며, 렌터카 보험(보험료가 일괄 포함됨)을 적용받습니다. 세금 혜택 측면에서는 사업자 리스가 더 유리할 수 있고, 개인의 보험 경력 유지를 원한다면 리스를, 보험료 부담을 줄이고 싶다면 렌트를 추천합니다. 자세한 내용은 전문가와 상의하여 모하비 리스 견적을 비교해 보세요."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "모하비 리스 견적을 저렴하게 받는 팁이 있나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "모하비 리스 견적의 핵심은 '잔존가치'를 높게 설정하는 것입니다. 잔존가치란 계약 만기 후 차량의 예상 가치를 의미하며, 잔존가치가 높을수록 월 납입료가 저렴해집니다. 또한, 운행 거리를 연간 1만~2만km 사이로 설정하고, 계약 기간을 48개월 이상으로 길게 가져가면 월 납입료를 절약할 수 있습니다. 딜러사별, 금융사별 프로모션과 금리가 다르므로, 반드시 여러 업체에 모하비 리스 견적을 비교해 보는 것이 중요합니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "모하비 리스 시 보증금과 선수금 중 어떤 것을 선택해야 할까요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "보증금은 계약 만료 시 돌려받는 금액이며, 선수금은 미리 지불하고 돌려받지 않는 금액입니다. 보증금은 월 납입료를 낮추는 효과가 있으며, 선수금은 초기 비용을 줄여주는 효과가 있습니다. 다만, 선수금은 중도 해지 시 환불이 어렵거나 복잡할 수 있으므로, 재정 상황에 따라 신중하게 결정해야 합니다. 초기 비용 마련이 어렵다면 보증금 없는 무보증 리스도 가능합니다. 전문가와 상담하여 모하비 리스 견적을 낼 때 보증금/선수금 조건을 상세히 비교해 보세요."
+              }
+            }
+          ]
+        }
+    </script>
+
+    <style>
+        /* 기본 색상 정의 */
+        :root {
+            --primary-color: #0A477D; /* 짙은 네이비 블루 */
+            --secondary-color: #2F90B9; /* 스카이 블루 */
+            --accent-color: #D6A400; /* 황금색 (프리미엄 차량 강조) */
+            --text-color: #333;
+            --bg-light: #F7F9FC; /* 부드러운 배경 */
+            --bg-highlight: #FDFDFE; /* 하이라이트 배경 */
+            --btn-cta: #FF6B6B; /* 강렬한 CTA 레드 */
+            --shadow-subtle: 0 4px 12px rgba(0,0,0,0.05);
+            --border-color-light: #e0e0e0;
+        }
+
+        /* 폰트 임포트 및 기본 스타일 */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; background-color: var(--bg-light); color: var(--text-color); line-height: 1.8; font-size: 16px; word-break: keep-all; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        /* 헤더 */
+        header { background-color: #fff; padding: 15px 0; border-bottom: 1px solid var(--border-color-light); box-shadow: var(--shadow-subtle); }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        header h1 { margin: 0; font-size: 1.6em; color: var(--primary-color); font-weight: 900; }
+        header h1 a { text-decoration: none; color: inherit; }
+        header .contact-info { font-size: 0.9em; color: #666; font-weight: 500; }
+
+        /* 히어로 섹션 */
+        .hero { background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.pexels.com/photos/2246476/pexels-photo-2246476.jpeg?auto=compress&cs=tinysrgb&h=1200'); background-size: cover; background-position: center; color: #fff; text-align: center; padding: 80px 20px 40px; }
+        .hero h1 { font-size: 3.2em; margin-bottom: 15px; font-weight: 900; line-height: 1.3; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.4em; margin-bottom: 40px; font-weight: 300; opacity: 0.9; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+
+        /* CTA 버튼 */
+        .cta-btn { background-color: var(--btn-cta); color: #fff; padding: 18px 45px; font-size: 1.5em; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, transform 0.2s; box-shadow: 0 6px 15px rgba(255,107,107,0.4); text-decoration: none; display: inline-block; width: 100%; box-sizing: border-box; }
+        .cta-btn:hover { background-color: #e65c5c; transform: translateY(-2px); }
+
+        /* 비교견적 폼 */
+        .compare-form-box { background-color: var(--bg-highlight); padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-top: -60px; position: relative; z-index: 10; border-top: 5px solid var(--accent-color); }
+        .compare-form-box h2 { color: var(--primary-color); text-align: center; margin-bottom: 25px; font-size: 2em; font-weight: 700; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: var(--primary-color); font-size: 0.95em; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid var(--border-color-light); border-radius: 6px; box-sizing: border-box; font-size: 1em; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group select:focus { border-color: var(--secondary-color); outline: none; box-shadow: 0 0 5px rgba(47, 144, 185, 0.3); }
+
+        /* 컨텐츠 섹션 */
+        .content-section { padding: 80px 0; margin-top: 20px; }
+        .content-section h2 { font-size: 2.5em; color: var(--primary-color); text-align: center; margin-bottom: 50px; font-weight: 700; position: relative; line-height: 1.4; }
+        .content-section h2::after { content: ''; display: block; width: 80px; height: 4px; background-color: var(--accent-color); margin: 15px auto 0; border-radius: 2px; }
+        .content-section h3 { font-size: 1.8em; color: var(--primary-color); margin-top: 40px; margin-bottom: 15px; border-left: 5px solid var(--secondary-color); padding-left: 15px; font-weight: 700; line-height: 1.5; }
+        .content-section p { font-size: 1em; color: #555; line-height: 1.8; margin-bottom: 20px; }
+
+        /* 강조 박스 스타일 */
+        .info-box { background-color: var(--bg-highlight); padding: 30px; border-radius: 10px; margin: 30px 0; border-left: 6px solid var(--accent-color); box-shadow: var(--shadow-subtle); }
+        .info-box p { margin: 0; font-size: 1.1em; color: #444; }
+
+        /* 주요 기능 그리드 */
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .feature-grid .item { padding: 30px; background-color: #fff; border-radius: 12px; box-shadow: var(--shadow-subtle); transition: transform 0.3s, box-shadow 0.3s; border: 1px solid var(--border-color-light); }
+        .feature-grid .item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .feature-grid .item h3 { font-size: 1.4em; color: var(--secondary-color); margin-top: 15px; margin-bottom: 10px; text-align: center; }
+        .feature-grid .item p { font-size: 0.95em; line-height: 1.6; color: #666; text-align: center; }
+        .icon-wrapper { text-align: center; margin-bottom: 15px; }
+        .icon { width: 60px; height: 60px; color: var(--accent-color); font-size: 3em; display: inline-block; }
+
+        /* 표/그래프 스타일 */
+        .data-table-container { overflow-x: auto; margin: 40px 0; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 0.95em; text-align: left; box-shadow: var(--shadow-subtle); border-radius: 8px; overflow: hidden; }
+        .data-table caption { font-size: 1.3em; font-weight: 700; color: var(--primary-color); padding: 15px 0; }
+        .data-table th, .data-table td { padding: 15px; border: 1px solid #f0f0f0; }
+        .data-table thead tr { background-color: var(--secondary-color); color: #fff; text-align: center; }
+        .data-table tbody tr:nth-child(even) { background-color: #f9f9f9; }
+        .data-table tbody tr:hover { background-color: #f1f1f1; }
+
+        /* FAQ 섹션 */
+        .faq-item { background-color: #fff; border-radius: 8px; margin-bottom: 15px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .faq-item h3 { cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 20px; margin: 0; font-size: 1.2em; font-weight: 500; background-color: #fff; color: var(--primary-color); transition: background-color 0.3s; border-bottom: 1px solid var(--border-color-light); }
+        .faq-item h3:hover { background-color: #f5f5f5; }
+        .faq-item h3 span.toggle-icon { font-size: 1.5em; color: var(--accent-color); transition: transform 0.3s; font-weight: 300; }
+        .faq-item.active h3 span.toggle-icon { transform: rotate(45deg); color: var(--btn-cta); }
+        .faq-item p { display: none; padding: 20px; color: #555; background-color: #fafafa; border-top: 1px solid #eee; }
+        .faq-item.active p { display: block; }
+
+        /* 키워드 리스트 */
+        .keyword-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; margin-top: 30px; }
+        .keyword-list li { background-color: #e8f5ff; color: var(--primary-color); padding: 10px 20px; margin: 8px; border-radius: 25px; font-weight: 500; font-size: 0.95em; transition: background-color 0.3s; border: 1px solid var(--secondary-color); }
+        .keyword-list li:hover { background-color: var(--secondary-color); color: #fff; }
+
+        /* 외부 사이트 목록 */
+        .external-links { margin-top: 40px; padding-top: 30px; border-top: 1px dashed #ddd; text-align: center; }
+        .external-links ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; }
+        .external-links li { margin: 10px 15px; }
+        .external-links li a { color: var(--primary-color); text-decoration: none; font-weight: 500; font-size: 1em; display: inline-block; padding: 5px 10px; border: 1px solid var(--secondary-color); border-radius: 5px; transition: background-color 0.3s, color 0.3s; }
+        .external-links li a:hover { background-color: var(--secondary-color); color: #fff; }
+
+        /* 푸터 */
+        footer { background-color: var(--primary-color); color: #fff; text-align: center; padding: 40px 20px; font-size: 0.9em; border-top: 5px solid var(--accent-color); }
+        footer a { color: #fff; text-decoration: underline; margin: 0 10px; }
+        footer a:hover { color: var(--accent-color); }
+
+        /* 모바일 반응형 */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 2.5em; }
+            .hero p { font-size: 1.2em; }
+            .compare-form-box { margin-top: 20px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .content-section h2 { font-size: 2em; }
+            .feature-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+            .cta-btn { font-size: 1.3em; padding: 15px 30px; }
+            header .container { flex-direction: column; text-align: center; }
+            header .contact-info { margin-top: 10px; }
+        }
+        @media (max-width: 600px) {
+            .keyword-list { justify-content: center; }
+            .keyword-list li { margin: 5px; font-size: 0.9em; }
+            .external-links li { margin: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1><a href="/">모하비 리스 견적 비교 | 최저가 장기 렌트/리스 솔루션</a></h1>
+            <div class="contact-info">대표전화: 1800-0000 | 2026년형 모하비 견적 전문</div>
+        </div>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section class="hero">
+            <div class="container">
+                <h1>**모하비 리스** 최저가 견적, 1분 안에 모든 조건 비교!</h1>
+                <p>2026년형 기아 모하비 신차 리스부터 장기렌트까지, 복수의 금융사 견적을 실시간으로 비교하고 현명하게 선택하세요.</p>
+            </div>
+            <div class="container">
+                <div class="compare-form-box">
+                    <h2>**모하비 리스 견적** 실시간 비교 요청</h2>
+                    <p style="text-align: center; color: #555; margin-bottom: 30px;">간단한 정보 입력으로 **모하비 장기렌트** 및 리스 견적을 한 번에 비교하세요. (총 7개 항목 입력)</p>
+                    <form action="#" method="post">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name">고객명 <span style="color:red;">*</span></label>
+                                <input type="text" id="name" name="name" placeholder="실명 입력" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">휴대폰 번호 <span style="color:red;">*</span></label>
+                                <input type="tel" id="phone" name="phone" placeholder="'-'없이 숫자만 입력" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="car-model">희망 차량 모델 (기본값: 모하비)</label>
+                                <input type="text" id="car-model" name="car-model" value="기아 모하비 (2026년형)" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="lease-term">희망 계약 기간 <span style="color:red;">*</span></label>
+                                <select id="lease-term" name="lease-term" required>
+                                    <option value="">선택</option>
+                                    <option value="36">36개월</option>
+                                    <option value="48">48개월</option>
+                                    <option value="60">60개월</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="annual-mileage">연간 주행 거리 (km) <span style="color:red;">*</span></label>
+                                <select id="annual-mileage" name="annual-mileage" required>
+                                    <option value="">선택</option>
+                                    <option value="10000">10,000 km</option>
+                                    <option value="15000">15,000 km</option>
+                                    <option value="20000">20,000 km</option>
+                                    <option value="30000">30,000 km (주행거리 무제한 옵션)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="initial-fee-type">초기 비용 조건 <span style="color:red;">*</span></label>
+                                <select id="initial-fee-type" name="initial-fee-type" required>
+                                    <option value="">선택</option>
+                                    <option value="deposit">보증금 (만기 환급)</option>
+                                    <option value="downpayment">선수금 (소멸)</option>
+                                    <option value="none">초기 비용 없음 (무보증)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="purpose">사용 목적</label>
+                                <select id="purpose" name="purpose">
+                                    <option value="personal">개인 자가용</option>
+                                    <option value="business">개인/법인 사업자 (세금 절감 목적)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="cta-btn">🚗 **모하비 리스** 최저가 비교 견적 받기</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="comparison-advantage">
+            <div class="container">
+                <h2>왜 **모하비 리스** 견적 비교가 필수인가요?</h2>
+                <div class="info-box">
+                    <p>
+                        **SEO 전문가의 조언:** 네이버 검색은 사용자가 원하는 최적의 금융 상품을 찾을 수 있도록 돕는 웹사이트를 선호합니다. **모하비 리스**와 같이 고가 차량의 경우 금융사별 금리와 잔존가치 책정 기준이 상이하여 견적 차이가 크기 때문에, 실시간으로 비교 서비스를 제공하는 것은 사용자 만족도를 높여 웹사이트 품질 점수에 긍정적인 영향을 미칩니다.
+                    </p>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="item">
+                        <div class="icon-wrapper"><span class="icon">🔍</span></div>
+                        <h3>복합 견적 실시간 비교</h3>
+                        <p>단순히 월 납입료만 비교하는 것이 아닌, **잔존가치**, 초기 비용, 계약 조건을 종합적으로 분석하여 최저가 **모하비 장기렌트** 또는 리스 견적을 제안합니다.</p>
+                    </div>
+                    <div class="item">
+                        <div class="icon-wrapper"><span class="icon">📊</span></div>
+                        <h3>금융사별 금리 차이 분석</h3>
+                        <p>리스는 금리에 민감한 금융 상품입니다. 캐피탈사, 은행, 보험사 등 각 금융사별 **모하비 리스** 금리를 비교하여 최소 200만 원 이상의 비용 절약 효과를 제공합니다.</p>
+                    </div>
+                    <div class="item">
+                        <div class="icon-wrapper"><span class="icon">✅</span></div>
+                        <h3>정확한 세금 혜택 안내</h3>
+                        <p>사업자 고객을 위한 **모하비 리스**의 세금 절감 효과(손비 처리)와 개인 고객의 보험료 절약 방안을 맞춤형으로 안내하여 최적의 계약 조건을 찾아드립니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" style="background-color: #fff;" id="2026-tip">
+            <div class="container">
+                <h2>💰 2026년형 **모하비** 장기 렌트/리스 계약 시 꼭 알아야 할 노하우</h2>
+                <div class="info-box">
+                    <p>
+                        **모하비**는 국산 SUV 중 독보적인 존재감을 가진 모델로, **모하비 리스** 시장에서도 꾸준한 수요를 보이고 있습니다. 2026년형 모델은 새로운 트림 구성과 첨단 기술(ADAS) 개선이 예상됩니다. 차량 가격이 높기 때문에 계약 방식에 따라 총 지출 비용의 차이가 크게 벌어질 수 있습니다.
+                    </p>
+                </div>
+
+                <h3>1. 모하비 잔존가치와 월 납입료의 상관관계</h3>
+                <p>
+                    **모하비 리스**의 월 납입료는 [차량 가격 - 잔존가치]를 계약 기간으로 나눈 금액에 금융 이자를 더한 것입니다. 따라서 잔존가치를 높게 설정할수록 월 납입료가 저렴해지지만, 만기 시 인수 가격이 높아진다는 단점이 있습니다. **모하비 리스**는 국산 SUV 중에서도 잔존가치가 높게 책정되는 편이므로, 이 점을 활용하여 월 납입료 부담을 줄이는 것이 핵심입니다. **모하비 장기렌트**의 경우 잔존가치가 미리 고정되어 월 납입료가 상대적으로 높을 수 있습니다.
+                </p>
+
+                <h3>2. 모하비 트림별/옵션별 리스 견적 비교 (그래비티 vs. 마스터즈)</h3>
+                <p>
+                    **모하비 리스**는 어떤 트림을 선택하느냐에 따라 견적이 크게 달라집니다. 특히 최상위 트림인 **모하비 그래비티**는 일반 **모하비 더 마스터즈** 트림보다 차량 가격이 높기 때문에, 리스료도 상승합니다. 하지만 중고차 시장에서 그래비티 트림의 잔존가치가 상대적으로 높게 평가되므로, 금융사별로 리스료 인상 폭에 차이가 발생할 수 있습니다. **모하비 장기렌트**로 선택할 경우, 렌트사가 선호하는 트림에 따라 할인율이 달라지기도 합니다.
+                </p>
+
+                <h3>3. 개인사업자/법인사업자의 세금 절감 전략</h3>
+                <p>
+                    개인사업자 및 법인사업자가 **모하비 리스**를 선택하는 가장 큰 이유는 세금 혜택입니다. 월 리스료 전액을 손비(비용)로 처리하여 과세 표준 금액을 낮출 수 있습니다. 2026년에도 차량 관련 비용(리스료, 보험료, 유류비 등)의 한도(승용차 800만원, 운행기록부 작성 시 1,500만원) 내에서 절세가 가능하므로, **모하비 리스** 계약 시 반드시 운행기록부 작성 여부를 고려하여 견적을 비교해야 합니다.
+                </p>
+
+                <div class="data-table-container">
+                    <table class="data-table">
+                        <caption>**모하비 리스** vs **장기렌트** 비교 (2026년 기준)</caption>
+                        <thead>
+                            <tr>
+                                <th>구분</th>
+                                <th>**모하비 리스** (운용리스)</th>
+                                <th>**모하비 장기렌트**</th>
+                                <th>최적 추천 대상</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>차량 번호판</td>
+                                <td>일반 승용차 번호판 (개인 소유 차량과 동일)</td>
+                                <td>'하', '허', '호' 번호판 사용</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>보험 처리</td>
+                                <td>개인 보험 요율 적용 (개인 보험 경력 유지)</td>
+                                <td>렌터카 보험 (단체 보험) 적용 (보험 경력 단절)</td>
+                                <td>보험 경력이 긴 운전자 (리스 유리)</td>
+                            </tr>
+                            <tr>
+                                <td>세금 처리</td>
+                                <td>취등록세, 자동차세 별도 납부</td>
+                                <td>취등록세, 자동차세 월 납입료에 포함</td>
+                                <td>사업자 (렌트가 세금 관리가 간편함)</td>
+                            </tr>
+                            <tr>
+                                <td>주행거리 제한</td>
+                                <td>일반적으로 1~3만 km 제한 (초과 시 패널티)</td>
+                                <td>일반적으로 1~4만 km 제한 (무제한 옵션도 존재)</td>
+                                <td>주행거리가 짧은 경우 (리스 유리)</td>
+                            </tr>
+                            <tr>
+                                <td>만기 시 선택</td>
+                                <td>인수, 반납, 재리스 중 선택 가능</td>
+                                <td>인수, 반납 선택 가능</td>
+                                <td>만기 시 차량 인수를 원하는 경우</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="text-align: right; font-size: 0.85em; color: #777;">*상기 내용은 일반적인 기준이며, 금융사별 계약 조건에 따라 세부 내용이 상이할 수 있습니다.</p>
+            </div>
+        </section>
+
+        <section class="content-section" id="faq-section">
+            <div class="container">
+                <h2>자주 묻는 질문 (FAQ) | **모하비 리스** 핵심 Q&A</h2>
+                <div class="faq-item active">
+                    <h3 id="q1">모하비 리스와 장기렌트의 차이점은 무엇인가요?<span class="toggle-icon">+</span></h3>
+                    <p>
+                        **모하비 리스**는 **운용리스**와 **금융리스**로 나뉘며, 일반적으로 운용리스를 통해 차량을 운용합니다. 이는 금융사(캐피탈)가 차량을 대신 구매하여 사용자에게 빌려주고 월 리스료를 받는 방식입니다. 가장 큰 특징은 **차량 번호판**이 일반 승용차 번호판으로 등록되어 품위 유지에 유리하며, **보험 경력**이 개인에게 그대로 적용됩니다. 반면 **모하비 장기렌트**는 렌터카 회사 소유의 차량을 대여하는 방식으로, 번호판에 '하, 허, 호'가 붙습니다. 보험은 렌터카 회사 명의의 단체 보험이 적용되어 운전자의 보험료 할증 걱정이 없지만, 경력이 단절됩니다.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h3 id="q2">모하비 리스 견적을 저렴하게 받는 팁이 있나요?<span class="toggle-icon">+</span></h3>
+                    <p>
+                        **모하비 리스**는 차량 가격이 높기 때문에 계약 조건에 따른 월 납입료 차이가 큽니다. 가장 중요한 것은 **잔존가치**를 높게 설정하는 것입니다. **기아 모하비**는 국산 대형 SUV 중에서도 중고차 가치가 높은 편에 속합니다. 따라서 리스 계약 시 잔존가치를 최대한 높게 책정하면 월 납입료 부담을 줄일 수 있습니다. 또한, **리스 프로모션** 기간을 활용하거나, 여러 **리스 업체**의 견적을 비교하여 금리가 낮은 금융사를 선택하는 것이 중요합니다. 저희 서비스를 통해 여러 **모하비 리스 전문가**의 견적을 비교해 보세요.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h3 id="q3">모하비 리스 계약 시 보증금과 선수금 중 어떤 것을 선택해야 할까요?<span class="toggle-icon">+</span></h3>
+                    <p>
+                        **보증금**은 계약 만료 시 돌려받는 금액이며, **선수금**은 계약 기간 동안 소멸되는 금액입니다. 초기 비용이 있다면 **보증금**을 선택하는 것이 유리합니다. 보증금은 월 리스료를 낮추는 효과와 함께 계약 만기 후 차량 인수 시 인수금으로 활용할 수 있기 때문입니다. 반면 **선수금**은 초기 비용을 월 리스료의 일부로 미리 납부하는 것이므로, 만기 시 돌려받지 못합니다. 중도 해지 시 환불 과정이 복잡할 수 있으므로, 재정 계획에 맞춰 신중하게 결정해야 합니다. 초기 비용이 전혀 없다면 **무보증 리스**도 가능합니다.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h3 id="q4">모하비 리스를 중도 해지하면 어떤 불이익이 있나요?<span class="toggle-icon">+</span></h3>
+                    <p>
+                        **모하비 리스** 계약은 중도 해지 시 위약금이 발생합니다. 일반적으로 남은 리스료의 일정 비율(15~30% 수준)이 위약금으로 책정됩니다. 따라서 계약 기간을 채우지 못하고 해지할 경우 상당한 손해를 볼 수 있습니다. 계약 전에 중도 해지 패널티 조항을 꼼꼼히 확인하고, 계약 기간을 신중하게 설정하는 것이 중요합니다. 특히 **모하비 리스**는 차량 가격이 높기 때문에 위약금 규모도 클 수 있으므로 주의해야 합니다. 중도 해지 리스크를 줄이고 싶다면 **모하비 장기렌트**의 승계 프로그램을 활용하는 것도 대안이 될 수 있습니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" style="background-color: var(--bg-highlight); padding: 40px 0;">
+            <div class="container">
+                <h2 style="margin-bottom: 30px;">공신력 있는 **모하비** 관련 외부 정보 (신뢰도 확보)</h2>
+                <div class="external-links">
+                    <p style="font-weight: 500; font-size: 1.1em; color: var(--primary-color);">**모하비 리스** 및 차량 관련 공신력 있는 기관의 정보를 참고하세요.</p>
+                    <ul>
+                        <li><a href="https://www.kia.com/kr/vehicles/mohave/features.html" target="_blank">기아자동차 공식 홈페이지 (모하비)</a></li>
+                        <li><a href="https://www.kidi.or.kr/" target="_blank">보험개발원 (차량 모델별 등급 확인)</a></li>
+                        <li><a href="https://www.molit.go.kr/" target="_blank">국토교통부 (교통 및 자동차 정책)</a></li>
+                        <li><a href="https://namu.wiki/w/%EA%B8%B0%EC%95%84%20%EB%AA%A8%ED%95%98%EB%B9%84" target="_blank">나무위키 - 기아 모하비</a></li>
+                        <li><a href="https://www.kncap.org/vehicle/result?model=221" target="_blank">KNCAP (자동차 안전도 평가)</a></li>
+                    </ul>
+                </div>
+                <div class="info-box" style="margin-top: 50px; background-color: #fff; border-left: 6px solid var(--btn-cta);">
+                    <h3 style="margin-top: 0; color: var(--btn-cta); border-left: none; padding-left: 0;">📌 모하비 리스 핵심 요약: 현명한 선택을 위한 가이드</h3>
+                    <p>
+                        **모하비 리스**는 고가 차량을 합리적으로 운용할 수 있는 최적의 방법이지만, 금융사별 금리와 잔존가치, 프로모션 조건에 따라 월 납입료가 크게 달라집니다. 특히 2026년형 **모하비 더 마스터** 트림의 경우, 초기 비용 없이도 진행 가능한 **무보증 리스** 상품이 많아지고 있습니다. **모하비 리스 견적**을 비교할 때는 단순히 월 납입료만 볼 것이 아니라, 총 비용과 만기 시 인수 조건을 꼼꼼히 체크해야 합니다. **모하비 장기렌트**와 리스 중 어떤 것이 나에게 유리한지 전문가와 상의하여 최적의 솔루션을 찾아보세요.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="deep-dive">
+            <div class="container">
+                <h2>🔎 **모하비 리스** 심층 분석: 리스료 산정 원리 및 절약 전략</h2>
+                <p>
+                    **모하비**는 국산 SUV 중에서도 독보적인 존재감을 가진 모델입니다. **모하비 리스**를 선택하는 운전자는 대형 SUV의 승차감과 디자인을 선호하면서도, 초기 비용 부담을 줄이고 세금 혜택을 받고자 합니다. **모하비 리스 견적**은 단순히 차량 가격의 할인을 넘어, 금융사 고유의 리스 상품 설계에 따라 결정되므로, **모하비 장기렌트**와 함께 꼼꼼한 비교가 필요합니다.
+                </p>
+
+                <h3>모하비 리스료를 결정하는 3가지 핵심 요소</h3>
+                <p>
+                    **모하비 리스**의 월 납입금액은 차량 가격, 잔존가치, 그리고 금융 금리 세 가지 요소의 조합으로 산출됩니다. 이 세 가지 요소의 조절을 통해 **모하비 리스** 비용을 절약할 수 있습니다.
+                </p>
+
+                <h4>1. 잔존가치(Residual Value): 리스료의 핵심 변동 요인</h4>
+                <p>
+                    **잔존가치**란 계약 만기 시 차량의 예상 중고차 가격입니다. 리스료는 [차량 가격 - 잔존가치]를 계약 기간으로 나눈 금액을 기준으로 합니다. 따라서 잔존가치를 높게 설정할수록 월 리스료가 낮아집니다. **모하비**는 중고차 시장에서 인기가 높고, 감가상각이 적은 모델로 평가받아 잔존가치가 높게 책정되는 경향이 있습니다. 특히 **모하비 그래비티** 트림이나 4륜구동(4WD) 옵션이 있는 차량은 잔존가치가 더 높아질 수 있습니다. **모하비 리스** 견적 비교 시, 각 금융사별로 제시하는 잔존가치 비율을 확인하는 것이 중요합니다.
+                </p>
+
+                <h4>2. 금리(Interest Rate): 리스 견적의 숨겨진 함정</h4>
+                <p>
+                    리스는 일종의 금융 대출입니다. 따라서 금리가 높으면 월 납입료가 상승합니다. **모하비 리스** 견적을 비교할 때, 월 납입료만 보고 계약하는 경우 숨겨진 높은 금리(이자율)를 놓칠 수 있습니다. 캐피탈사, 은행, 보험사 등 금융사별로 금리가 다르고, 프로모션 기간에 따라 금리 우대가 적용되기도 합니다. 최근 금리 인상 추세에 따라 **모하비 리스** 비용이 상승하고 있으므로, 여러 금융사의 금리를 비교하는 것이 중요합니다. 특히 **모하비 장기렌트**는 금리가 월 납입료에 포함되어 있지만, 리스는 명확하게 분리되어 계산됩니다.
+                </p>
+
+                <h4>3. 계약 기간과 주행거리: 모하비 운용 계획에 따른 최적화</h4>
+                <p>
+                    **모하비 리스** 계약 기간이 길어질수록 월 납입료는 낮아집니다. 일반적으로 36개월보다는 48개월, 48개월보다는 60개월 계약이 월 납입료가 저렴합니다. 하지만 중도 해지 리스크와 만기 시 차량 상태를 고려하여 신중하게 결정해야 합니다. **주행거리** 제한도 중요합니다. **모하비 리스**는 연간 1만km, 2만km, 3만km 등으로 주행거리를 설정할 수 있으며, 주행거리가 짧을수록 잔존가치가 높아져 월 납입료가 낮아집니다. **모하비 내돈내산 후기**나 **모하비 디시** 등 커뮤니티에서 주행거리 초과 시 패널티에 대한 정보를 미리 확인하는 것이 좋습니다.
+                </p>
+
+                <h3>모하비 장기렌트 vs 리스, 세금 혜택의 차이점</h3>
+                <p>
+                    개인 사업자나 법인 사업자에게 **모하비 장기렌트**와 리스는 매력적인 세금 절감 수단입니다. **모하비 리스**는 월 리스료 전액을 손비 처리할 수 있으며, **모하비 장기렌트**는 차량 관련 비용 전액을 손비 처리하여 세금 부담을 줄입니다. 특히 2026년에도 차량 관련 비용 처리 한도가 유지될 예정이므로, 연간 소득 규모에 따라 리스/렌트 중 유리한 방식을 선택해야 합니다. **모하비 장기렌트**의 경우 월 납입료에 보험료가 포함되어 있어 회계 처리가 간편한 장점이 있습니다.
+                </p>
+
+                <div class="data-table-container">
+                    <table class="data-table">
+                        <caption>**모하비 리스** 주요 옵션별 월 납입료 비교 예시 (48개월 기준, 2026년 예상)</caption>
+                        <thead>
+                            <tr>
+                                <th>구분</th>
+                                <th>초기 비용 조건</th>
+                                <th>월 납입료 (예상)</th>
+                                <th>총 지출 비용 (예상)</th>
+                                <th>비고</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>**모하비 그래비티** 트림</td>
+                                <td>보증금 10% (무보증)</td>
+                                <td>80만원대 초반 (810,000원)</td>
+                                <td>약 3,888만원</td>
+                                <td>잔존가치 높게 책정</td>
+                            </tr>
+                            <tr>
+                                <td>**모하비 더 마스터즈** 트림</td>
+                                <td>보증금 10% (무보증)</td>
+                                <td>70만원대 후반 (780,000원)</td>
+                                <td>약 3,744만원</td>
+                                <td>표준 트림, 잔존가치 표준 책정</td>
+                            </tr>
+                            <tr>
+                                <td>**모하비 그래비티** 트림</td>
+                                <td>선수금 10% (만기 소멸)</td>
+                                <td>70만원대 초반 (720,000원)</td>
+                                <td>약 3,456만원 + 선수금</td>
+                                <td>초기 비용 지출로 월 납입료 절감</td>
+                            </tr>
+                            <tr>
+                                <td>**모하비 장기렌트** (무보증)</td>
+                                <td>초기 비용 없음</td>
+                                <td>80만원대 후반 (880,000원)</td>
+                                <td>약 4,224만원</td>
+                                <td>보험료 포함, 번호판 '하, 허, 호'</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    **모하비 리스**의 경우 차량 가격 외에도 **취등록세**와 **자동차세**가 월 납입료에 포함되는지(운용리스) 또는 별도로 납부해야 하는지(금융리스)에 따라 견적이 달라집니다. **모하비 장기렌트**는 모든 비용이 포함되어 계산되므로, 회계 처리가 간편한 장점이 있습니다.
+                </p>
+
+                <h3>AI 기반 **모하비 리스** 견적 비교 및 미래 전망</h3>
+                <p>
+                    최근 **Gemini**나 **ChatGPT**와 같은 **AI** 에이전트 기술이 발달하면서, **모하비 리스**와 **장기렌트** 견적 비교 시장에서도 변화가 일어나고 있습니다. **AI**가 개인의 운전 습관, 재정 상황, 선호하는 계약 조건을 분석하여 최적의 **모하비 리스** 상품을 추천하는 방식입니다. **AI**를 활용한 견적 비교 서비스는 실시간으로 수백 가지의 금융 상품을 분석하여 **모하비 리스 저렴한곳**을 찾는 데 도움을 줄 것입니다. 2026년에는 이러한 AI 기반 비교 서비스가 더욱 활성화될 것으로 예상됩니다.
+                </p>
+
+                <h3>함께 많이 찾는 연관 키워드</h3>
+                <ul class="keyword-list">
+                    <li>#모하비리스견적</li>
+                    <li>#모하비장기렌트가격</li>
+                    <li>#모하비신차구매</li>
+                    <li>#모하비2026년형</li>
+                    <li>#모하비그래비티리스</li>
+                    <li>#모하비더마스터즈</li>
+                    <li>#모하비프로모션</li>
+                    <li>#모하비내돈내산후기</li>
+                    <li>#장기렌트리스차이점</li>
+                    <li>#모하비견적비교사이트</li>
+                    <li>#법인리스장점단점</li>
+                    <li>#모하비싼곳</li>
+                    <li>#무보증리스조건</li>
+                    <li>#모하비운용리스</li>
+                    <li>#모하비금융리스</li>
+                    <li>#모하비중고차시세</li>
+                    <li>#모하비할인혜택</li>
+                    <li>#모하비디젤연비</li>
+                    <li>#모하비리스가입순위</li>
+                    <li>#모하비리스조건</li>
+                    <li>#모하비장점단점</li>
+                    <li>#모하비유튜브리뷰</li>
+                    <li>#모하비트위터정보</li>
+                    <li>#모하비인스타그램후기</li>
+                    <li>#모하비ChatGPT분석</li>
+                    <li>#모하비Gemini추천</li>
+                    <li>#모하비AI견적</li>
+                    <li>#신차리스할인</li>
+                    <li>#자동차리스비용</li>
+                    <li>#2026년모하비출시</li>
+                </ul>
+            </div>
+        </section>
     </main>
-  </body>
-</html>
+
+    <script>
+        // FAQ 토글 기능 (사용자 체류 시간 증가)
+        document.querySelectorAll('.faq-item h3').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== parent && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                parent.classList.toggle('active');
+            });
+        });
+
+        // 폼 제출 시 유효성 검사 (체류 시간 연장 및 품질 개선)
+        document.querySelector('.compare-form-box form').addEventListener('submit', function(e) {
+            const requiredInputs = this.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+            requiredInputs.forEach(input => {
+                if (!input.value) {
+                    isValid = false;
+                    input.style.borderColor = 'red';
+                } else {
+                    input.style.borderColor = '#ddd';
+                }
+            });
+
+            if (!isValid) {
+                e.preventDefault();
+                alert('필수 입력 항목을 모두 채워주세요.');
+            } else {
+                e.preventDefault();
+                alert('🚗 견적 요청이 접수되었습니다! 잠시 후 **모하비 리스** 최저가 비교 견적 결과를 확인하실 수 있습니다.');
+                // 실제 환경에서는 AJAX 통신 후 결과 페이지로 리다이렉션
+                // this.submit();
+            }
+        });
+    </script>
+  
